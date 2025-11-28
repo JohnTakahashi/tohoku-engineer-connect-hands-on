@@ -34,7 +34,8 @@ public class ActiveBallController : MonoBehaviour
 
         if (_keyboard.spaceKey.wasPressedThisFrame)
         {
-            var ballPhysicsManager = _activeBall.GetComponent<BallPhysicsManager>();
+            BallPhysicsManager ballPhysicsManager = _activeBall.GetComponent<BallPhysicsManager>();
+            ballPhysicsManager.OnLanded += CreateNewActiveBall;   // ボールが着地したときに新しいボールを生成するように登録
             ballPhysicsManager.BallDrop();
             _isDropped = true;
         }
@@ -42,6 +43,13 @@ public class ActiveBallController : MonoBehaviour
 
     private void CreateNewActiveBall()
     {
+        // 既存のボールがあればイベントを解除
+        if (_activeBall != null)
+        {
+            BallPhysicsManager ballPhysicsManager = _activeBall.GetComponent<BallPhysicsManager>();
+            ballPhysicsManager.OnLanded -= CreateNewActiveBall;
+        }
+        
         _activeBall = _ballFactory.CreateBall();
         _isDropped = false;
     }
