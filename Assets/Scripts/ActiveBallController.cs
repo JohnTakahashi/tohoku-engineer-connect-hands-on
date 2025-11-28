@@ -3,11 +3,18 @@ using UnityEngine.InputSystem;
 
 public class ActiveBallController : MonoBehaviour
 {
-    [SerializeField] private GameObject _activeBall;
+    [SerializeField] private BallFactory _ballFactory;
+    private GameObject _activeBall;
     private readonly float _speed = 5f;
 
     private Keyboard _keyboard = Keyboard.current;
-    private bool _isDropped = false;
+    private bool _isDropped = true;
+
+    private void Start()
+    {
+        // 最初のボールを生成
+        CreateNewActiveBall();
+    }   
 
     private void Update()
     {
@@ -31,5 +38,11 @@ public class ActiveBallController : MonoBehaviour
             ballPhysicsManager.BallDrop();
             _isDropped = true;
         }
+    }
+
+    private void CreateNewActiveBall()
+    {
+        _activeBall = _ballFactory.CreateBall();
+        _isDropped = false;
     }
 }
