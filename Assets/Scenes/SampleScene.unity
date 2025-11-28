@@ -569,7 +569,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4be1795951d539e4d94a5ea851cae0b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BallFactory
-  _ballPrefab: {fileID: 2960035412404346947, guid: 465513a26c6aa454a9dfe6657d129731, type: 3}
+  _ballPrefab:
+  - {fileID: 1320053894657946750, guid: f0e43fad34d74014b96e32dbb6e84bb2, type: 3}
+  - {fileID: 2257675303779519476, guid: 0af4e1cf04b8ea04cbcee90e899b510c, type: 3}
+  - {fileID: 7469372895349006659, guid: 023df438b2ec57047a6ee651d52a4646, type: 3}
+  - {fileID: 372286065998725275, guid: 590e859e599a84d4f8aa7fa6083bfbd9, type: 3}
+  - {fileID: 9149486483810275488, guid: c52cdb0d96e2bd34bb6740e085e155de, type: 3}
+  - {fileID: 1253391322234962451, guid: d6967dfb195ca034fbf5bcb30a4dbe7b, type: 3}
+  - {fileID: 6763169991372477894, guid: 10fcb78f1bed317448081d7f4d9257de, type: 3}
+  - {fileID: 7642140301189542978, guid: 6a50d733c013dd548b1b21be4c76b1b2, type: 3}
+  - {fileID: 3093628595264134369, guid: 58dc6126396793f469539d83ce4ecf13, type: 3}
+  - {fileID: 6971522247914890939, guid: 53c42b98a0251a245920d15dad56b250, type: 3}
+  - {fileID: 2052545978861288048, guid: 28b75127cdfb8764a8f00d94f2dd6381, type: 3}
   _ballParent: {fileID: 248225715}
 --- !u!1 &505535687
 GameObject:
