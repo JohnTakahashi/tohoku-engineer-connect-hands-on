@@ -8,7 +8,7 @@ public class BallPhysicsManager : MonoBehaviour
     public int BallSize { get; private set; }
 
     public event Action OnLanded;
-    public event Action<GameObject, GameObject> OnBallCollided;
+    public event Action<GameObject, GameObject, int> OnBallCollided;
 
     public void Initialize(int ballSize, bool isDropped)
     {
@@ -33,12 +33,11 @@ public class BallPhysicsManager : MonoBehaviour
         // 衝突したオブジェクトがBallタグを持っているか確認
         if (collision.gameObject.CompareTag("Ball"))
         {
-            var otherBallPhysicsManager = collision.gameObject.GetComponent<BallPhysicsManager>();
+            BallPhysicsManager otherBallPhysicsManager = collision.gameObject.GetComponent<BallPhysicsManager>();
             // 衝突した相手のボールのサイズが同じか確認
             if (otherBallPhysicsManager != null && otherBallPhysicsManager.BallSize == this.BallSize)
             {
-                OnBallCollided?.Invoke(this.gameObject, collision.gameObject);
-                Debug.Log("同じサイズのボールが衝突しました");
+                OnBallCollided?.Invoke(this.gameObject, collision.gameObject, this.BallSize);
             }
         }
     }
