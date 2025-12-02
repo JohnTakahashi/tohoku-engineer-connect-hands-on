@@ -4,11 +4,23 @@ using UnityEngine.InputSystem;
 public class ActiveBallController : MonoBehaviour
 {
     [SerializeField] private BallFactory _ballFactory;
+    [SerializeField] private GameObject _rightWall;
+    [SerializeField] private GameObject _leftWall;
+    private float _rightLimitX;
+    private float _leftLimitX;
     private GameObject _activeBall;
     private readonly float _speed = 5f;
+    private const float Margin = 0.01f; // 壁とボールの間に隙間を設ける
 
     private Keyboard _keyboard = Keyboard.current;
     private bool _isDropped = true;
+
+    private void Awake()
+    {
+        // 壁の位置を取得
+        _rightLimitX = _rightWall.transform.position.x - _rightWall.transform.localScale.x / 2;
+        _leftLimitX = _leftWall.transform.position.x + _leftWall.transform.localScale.x / 2;
+    }
 
     private void Start()
     {
@@ -22,15 +34,19 @@ public class ActiveBallController : MonoBehaviour
         if (_isDropped) 
             return;
 
+        float moveDistance = 0f;
+
         if (_keyboard.rightArrowKey.isPressed)
         {
-            _activeBall.transform.Translate(Time.deltaTime * _speed, 0, 0);
+            moveDistance += Time.deltaTime * _speed;
         }
 
         if (_keyboard.leftArrowKey.isPressed)
         {
-            _activeBall.transform.Translate(-Time.deltaTime * _speed, 0, 0);
+            moveDistance -= Time.deltaTime * _speed;
         }
+
+        _activeBall.transform.position = CalcPosition(moveDistance);
 
         if (_keyboard.spaceKey.wasPressedThisFrame)
         {
@@ -52,5 +68,23 @@ public class ActiveBallController : MonoBehaviour
         
         _activeBall = _ballFactory.CreateBall();
         _isDropped = false;
+    }
+
+    // ボールの新しい位置を計算し、落下時に壁に当たらないように調整する
+    private Vector3 CalcPosition(float moveDistance)
+    {
+        float activeBallRadius = _activeBall.transform.localScale.x / 2;
+        float newPosX = _activeBall.transform.position.x + moveDistance;
+
+        if (newPosX > _rightLimitX - activeBallRadius - Margin)
+        {
+            newPosX = _rightLimitX - activeBallRadius - Margin;
+        }
+        else if (newPosX < _leftLimitX + activeBallRadius + Margin)
+        {
+            newPosX = _leftLimitX + activeBallRadius + Margin;
+        }
+
+        return new Vector3(newPosX, _activeBall.transform.position.y, _activeBall.transform.position.z);
     }
 }
