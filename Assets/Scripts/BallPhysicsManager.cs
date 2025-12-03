@@ -6,6 +6,7 @@ public class BallPhysicsManager : MonoBehaviour
     [SerializeField] private Rigidbody2D _rigidbody;
     
     public int BallSize { get; private set; }
+    public bool IsLanded { get; private set; } = false;
 
     public event Action OnLanded;
     public event Action<GameObject, GameObject, int> OnBallCollided;
@@ -29,6 +30,7 @@ public class BallPhysicsManager : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         OnLanded?.Invoke();
+        IsLanded = true;
 
         // 衝突したオブジェクトがBallタグを持っているか確認
         if (collision.gameObject.CompareTag("Ball"))
