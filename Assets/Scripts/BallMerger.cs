@@ -1,8 +1,11 @@
+using System;
 using UnityEngine;
 
 public class BallMerger : MonoBehaviour
 {
     [SerializeField] private BallFactory _ballFactory;
+
+    public event Action<int> OnMerged;
 
     private void Awake()
     {
@@ -23,6 +26,8 @@ public class BallMerger : MonoBehaviour
             var ballPhysicsManager = newBall.GetComponent<BallPhysicsManager>();
             ballPhysicsManager.BallDrop();
         }
+
+        OnMerged?.Invoke(mergeBallSize);
 
         Destroy(ball1);
         Destroy(ball2);
