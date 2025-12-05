@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class GameOverJudger : MonoBehaviour
 {
+    public GameObject gameOverUI;
+
     private void OnTriggerStay2D(Collider2D other)
     {
         // 衝突したオブジェクトがBallタグを持っているか確認
@@ -12,8 +14,14 @@ public class GameOverJudger : MonoBehaviour
             // ボールが着地していたらゲームオーバー
             if (ballPhysicsManager.IsLanded)
             {
-                Debug.Log("Game Over!");
+                HandleGameOver();
             }
         }
+    }
+
+    private void HandleGameOver()
+    {
+        gameOverUI.SetActive(true);
+        Time.timeScale = 0f;
     }
 }
