@@ -11,14 +11,31 @@ public class BallPhysicsManager : MonoBehaviour
     public event Action OnLanded;
     public event Action<GameObject, GameObject, int> OnBallCollided;
 
+    private readonly float[] _bouncinessTable = {
+        0.1f, 0.15f, 0.2f, 0.25f, 0.3f,
+        0.35f, 0.4f, 0.45f, 0.5f, 0.55f
+    };
+
     public void Initialize(int ballSize, bool isDropped)
     {
         BallSize = ballSize;
+
+        ApplyBounciness();
 
         if (isDropped)
         {
             BallDrop();
         }
+    }
+    private void ApplyBounciness()
+    {
+        if (BallSize < 0 || BallSize >= _bouncinessTable.Length) return;
+
+        PhysicsMaterial2D mat = new PhysicsMaterial2D("BallMaterial_" + BallSize);
+        mat.bounciness = _bouncinessTable[BallSize];
+        mat.friction = 0.4f;
+
+        _rigidbody.sharedMaterial = mat;
     }
 
     public void BallDrop()
