@@ -10,7 +10,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2960035412404346947, guid: 465513a26c6aa454a9dfe6657d129731, type: 3}
       propertyPath: m_Name
-      value: Ball Variant
+      value: Ball4
       objectReference: {fileID: 0}
     - target: {fileID: 4498531645304495649, guid: 465513a26c6aa454a9dfe6657d129731, type: 3}
       propertyPath: m_LocalScale.x
@@ -18,7 +18,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4498531645304495649, guid: 465513a26c6aa454a9dfe6657d129731, type: 3}
       propertyPath: m_LocalScale.y
-      value: 1.1
+      value: 0.40046522
       objectReference: {fileID: 0}
     - target: {fileID: 4498531645304495649, guid: 465513a26c6aa454a9dfe6657d129731, type: 3}
       propertyPath: m_LocalPosition.x
@@ -58,6 +58,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4498531645304495649, guid: 465513a26c6aa454a9dfe6657d129731, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8206149612703043039, guid: 465513a26c6aa454a9dfe6657d129731, type: 3}
+      propertyPath: m_Color.b
+      value: 0.15471691
+      objectReference: {fileID: 0}
+    - target: {fileID: 8206149612703043039, guid: 465513a26c6aa454a9dfe6657d129731, type: 3}
+      propertyPath: m_Color.g
+      value: 0.09656689
+      objectReference: {fileID: 0}
+    - target: {fileID: 8206149612703043039, guid: 465513a26c6aa454a9dfe6657d129731, type: 3}
+      propertyPath: m_Color.r
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
